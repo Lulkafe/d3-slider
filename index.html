@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="simpleD3Slider.js"></script>
+</head>
+
+<body>
+<div id="vis"></div>
+</body>
+
+<script>
+
+    var svg = d3.select("#vis").append("svg").attr("width", 1000).attr("height", 700),
+        slider1 = new simpleSlider(),
+        slider2 = new simpleSlider(),
+        circle = svg.append("circle").attr("cx", 50).attr("cy", 100).attr("r", 30);
+
+
+    slider1.width(200).x(30).y(200).value(1.0).event(function(){
+        circle.attr("r", 30 * slider1.value());
+    });
+
+    slider2.width(200).x(30).y(230).value(0.5).event(function(){
+        circle.attr("cx", 50 + (170 * slider2.value()));
+    });
+
+    svg.call(slider1);
+    svg.call(slider2);
+
+</script>
+</html>
